@@ -6,6 +6,8 @@ let lastPress2;
 
 document.addEventListener("DOMContentLoaded",function(){
 
+
+// first snake**********************************************************************
   targets.forEach(function(target){
     document.querySelector(`tr:nth-child(${target[0]}) td:nth-child(${target[1]})`).classList.add('active');
   });
@@ -13,7 +15,12 @@ document.addEventListener("DOMContentLoaded",function(){
  document.onkeydown = checkKey;
 
  function checkKey(e) {
-  lastPress = e || window.event;
+  e = e || window.event;
+  if ([38,40,37,39].includes(e.keyCode)) {
+    lastPress = e;
+  } else if ([87,83,65,68].includes(e.keyCode)) {
+    lastPress2 = e;
+  }
  }
   var intervalId = setInterval(function(){
   let newSquare = [].concat(targets[0]);
@@ -68,15 +75,16 @@ document.addEventListener("DOMContentLoaded",function(){
   }
 },200);
 
+// second snake**********************************************************************
 targets2.forEach(function(target2){
     document.querySelector(`tr:nth-child(${target2[0]}) td:nth-child(${target2[1]})`).classList.add('active2');
   });
 
- document.onkeydown = checkKey2;
+ // document.onkeydown = checkKey2;
 
- function checkKey2(d) {
-  lastPress2 = d || window.event;
- }
+ // function checkKey2(d) {
+ //  lastPress2 = d || window.event;
+ // }
   var intervalId = setInterval(function(){
   let newSquare2 = [].concat(targets2[0]);
   //   // up
@@ -104,7 +112,7 @@ targets2.forEach(function(target2){
     document.querySelector(`tr:nth-child(${newSquare2[0]}) td:nth-child(${newSquare2[1]})`).classList.add('active2');
     console.log(targets2);
     }
-    // left
+    // left>
     else if (lastPress2.keyCode == '65') {
     newSquare2[1] -= 1;
      if( newSquare2[1] <= 0 ) {
