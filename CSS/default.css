@@ -1,0 +1,17 @@
+body {
+	background-image: url(../media/0101.jpg);
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+.splash {
+	background: linear-gradient(45deg, grey, white);
+	min-height: 100px;
+}
+#neo {
+	float: left;
+}
+h1 {
+	width: 100px;
+	color: white;
+	margin: 0 auto;
+}
