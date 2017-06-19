@@ -19,6 +19,9 @@ td {
 td.active{
 	background: linear-gradient(45deg, red, black);
 }
+td.active2{
+	background: linear-gradient(45deg, green, black);
+}
 
 h1 {
 	width: 400px;
