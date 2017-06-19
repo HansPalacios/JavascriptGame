@@ -1,6 +1,6 @@
 const gridSize = 18;
 let targets = [[4,4],[4,3],[4,2]];
-
+let lastPress;
 
 document.addEventListener("DOMContentLoaded",function(){
 
@@ -11,11 +11,13 @@ document.addEventListener("DOMContentLoaded",function(){
  document.onkeydown = checkKey;
 
  function checkKey(e) {
-  e = e || window.event;
+  lastPress = e || window.event;
+ }
   var intervalId = setInterval(function(){
   let newSquare = [].concat(targets[0]);
   //   // up
-  if (e.keyCode == '38') {
+  if( lastPress == undefined) return false;
+  if (lastPress.keyCode == '38') {
     newSquare[0] -= 1;
     if( newSquare[0] <= 0) {
         newSquare[0] = 18;
@@ -27,8 +29,7 @@ document.addEventListener("DOMContentLoaded",function(){
     console.log(targets);
   }
   // down
-    else if (e.keyCode == '40') {
-    newSquare[1].break;
+    else if (lastPress.keyCode == '40') {
     newSquare[0] += 1;
      if( newSquare[0] > gridSize ) {
           newSquare[0] = 1;
@@ -40,7 +41,7 @@ document.addEventListener("DOMContentLoaded",function(){
     console.log(targets);
     }
     // left
-    else if (e.keyCode == '37') {
+    else if (lastPress.keyCode == '37') {
     newSquare[1] -= 1;
      if( newSquare[1] <= 0 ) {
           newSquare[1] = 18;
@@ -52,8 +53,7 @@ document.addEventListener("DOMContentLoaded",function(){
     console.log(targets);
   }
     // right
-    else  if (e.keyCode == '39') {
-    newSquare[0].break;
+    else  if (lastPress.keyCode == '39') {
     newSquare[1] += 1;
      if( newSquare[1] > gridSize ) {
           newSquare[1] = 1;
@@ -65,5 +65,5 @@ document.addEventListener("DOMContentLoaded",function(){
     console.log(targets);
   }
 },200);
-    }
+
 });
