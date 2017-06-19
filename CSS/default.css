@@ -3,15 +3,21 @@ body {
 	background-size: cover;
 	background-repeat: no-repeat;
 }
-.splash {
+table {
+	margin: 50px auto;
+}
+tr {
 	background: linear-gradient(45deg, grey, white);
-	min-height: 100px;
+	height: 33px;
+	width : 25px;
 }
-#neo {
-	float: left;
+td {
+	border: 2px solid white;
 }
+
 h1 {
-	width: 100px;
+	width: 400px;
+	text-align: center;
 	color: white;
-	margin: 0 auto;
+	margin: 20px auto;
 }
