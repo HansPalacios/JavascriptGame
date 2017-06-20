@@ -22,16 +22,47 @@ td.active{
 td.active2{
 	background: linear-gradient(45deg, green, black);
 }
+/*sideways duck*/
 td.dot{
-	background: linear-gradient(45deg, blue, blue);
+	background-image: url(../media/duck1.png);
+	width: 60px;
+	height: 60px;
+	position: fixed;
+	background-size: contain;
+	background-repeat: no-repeat;
+	margin-left: -15px;
+	margin-top: -15px;
 }
+/*forward duck*/
 td.dot2{
-	background: linear-gradient(45deg, pink, pink);
+	background-image: url(../media/duck2.png);
+	width: 60px;
+	height: 60px;
+	position: fixed;
+	background-size: contain;
+	background-repeat: no-repeat;
+	margin-left: -20px;
+	margin-top: -18px;
 }
 td.face{
-	background-image: url(../media/neo.jpg);
-	width: 50px;
-	border-radius: 50%;
+	background-image: url(../media/dennis.png);
+	width: 60px;
+	height: 60px;
+	position: fixed;
+	background-size: contain;
+	background-repeat: no-repeat;
+	margin-left: -10px;
+	margin-top: -10px;
+}
+td.face2{
+	background-image: url(../media/logan.png);
+	width: 70px;
+	height: 70px;
+	position: fixed;
+	background-size: contain;
+	background-repeat: no-repeat;
+	margin-left: -25px;
+	margin-top: -20px;
 }
 h1 {
 	width: 400px;

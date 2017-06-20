@@ -5,15 +5,40 @@ let lastPress2;
 let dot;
 let dot2;
 
+// face for snake 1
+function face(){
+  let coords = targets[0];
+  console.log(face,coords)
+  document.querySelector(`tr:nth-child(${coords[0]}) td:nth-child(${coords[1]})`).classList.add('face');
+};
+face();
+function byeface(){
+  let coords = targets[1];
+  console.log(face,coords)
+  document.querySelector(`tr:nth-child(${coords[0]}) td:nth-child(${coords[1]})`).classList.remove('face');
+};
 
+// face for snake 2
+function face2(){
+  let coords = targets2[0];
+  console.log(face,coords)
+  document.querySelector(`tr:nth-child(${coords[0]}) td:nth-child(${coords[1]})`).classList.add('face2');
+};
+face2();
+function byeface2(){
+  let coords = targets2[1];
+  console.log(face,coords)
+  document.querySelector(`tr:nth-child(${coords[0]}) td:nth-child(${coords[1]})`).classList.remove('face2');
+};
 
+// random dot
 function addDot(type){
   document.querySelector('.'+type) && document.querySelector('.'+type).classList.remove(type);
   let coords = [Math.floor((Math.random() * 25) + 1),Math.floor((Math.random() * 25) + 1)];
   window[type] = coords;
   console.log(type,coords)
   document.querySelector(`tr:nth-child(${coords[0]}) td:nth-child(${coords[1]})`).classList.add(type);
-}
+};
 
 document.addEventListener("DOMContentLoaded",function(){
 
@@ -87,7 +112,8 @@ addDot('dot2');
     document.querySelector(`tr:nth-child(${newSquare[0]}) td:nth-child(${newSquare[1]})`).classList.add('active');
     console.log(targets);
   };
-
+  face();
+  byeface();
   plus();
   plus2();
 },200);
@@ -148,7 +174,8 @@ targets2.forEach(function(target2){
     document.querySelector(`tr:nth-child(${newSquare2[0]}) td:nth-child(${newSquare2[1]})`).classList.add('active2');
     console.log(targets2);
   };
-
+  face2();
+  byeface2();
   plus();
   plus2();
 },200);
@@ -180,6 +207,7 @@ function plus(){
 function plus2(){
   let firstSquare = targets[0];
   let secondSquare = targets2[0];
+
   if ( JSON.stringify(firstSquare) === JSON.stringify(window.dot2)) {
   let newSquare = targets2.slice(-1)[0];
   targets.push(newSquare);
