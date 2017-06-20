@@ -1,17 +1,23 @@
 const gridSize = 18;
 let targets = [[2,6],[2,5],[2,4],[2,3],[2,2]];
 let targets2 = [[16,6],[16,5],[16,4],[16,3],[16,2]];
+let dots = [[7,6]];
 let lastPress;
 let lastPress2;
 
+
 document.addEventListener("DOMContentLoaded",function(){
 
+// food**********************************
+dots.forEach(function(dot){
+document.querySelector(`tr:nth-child(${dot[0]}) td:nth-child(${dot[1]})`).classList.add('dot');
+});
 
 // first snake**********************************************************************
   targets.forEach(function(target){
     document.querySelector(`tr:nth-child(${target[0]}) td:nth-child(${target[1]})`).classList.add('active');
   });
-
+  
  document.onkeydown = checkKey;
 
  function checkKey(e) {
@@ -73,6 +79,11 @@ document.addEventListener("DOMContentLoaded",function(){
     document.querySelector(`tr:nth-child(${newSquare[0]}) td:nth-child(${newSquare[1]})`).classList.add('active');
     console.log(targets);
   }
+  // else if( targets = dots ) {
+  //  newSquare[1] += 1;
+  //  targets.push(newSquare);
+  // }
+  plus();
 },200);
 
 // second snake**********************************************************************
@@ -80,14 +91,9 @@ targets2.forEach(function(target2){
     document.querySelector(`tr:nth-child(${target2[0]}) td:nth-child(${target2[1]})`).classList.add('active2');
   });
 
- // document.onkeydown = checkKey2;
-
- // function checkKey2(d) {
- //  lastPress2 = d || window.event;
- // }
   var intervalId = setInterval(function(){
   let newSquare2 = [].concat(targets2[0]);
-  //   // up
+  // up
   if( lastPress2 == undefined) return false;
   if (lastPress2.keyCode == '87') {
     newSquare2[0] -= 1;
@@ -135,7 +141,40 @@ targets2.forEach(function(target2){
     document.querySelector(`tr:nth-child(${removeSquare2[0]}) td:nth-child(${removeSquare2[1]})`).classList.remove('active2');
     document.querySelector(`tr:nth-child(${newSquare2[0]}) td:nth-child(${newSquare2[1]})`).classList.add('active2');
     console.log(targets2);
-  }
+  };
+  plus();
 },200);
 
+
+
+function plus(){
+  let firstSquare = targets[0];
+  let secondSquare = targets2[0];
+  let firstDot = dots[0];
+
+  if ( JSON.stringify(firstSquare) === JSON.stringify(firstDot)) {
+  let newSquare = [];
+  firstSquare.concat(newSquare);
+  newSquare[1] += 1;
+  targets.push(newSquare);
+  let removeSquare2 = targets2.pop();
+  document.querySelector(`tr:nth-child(${removeSquare2[0]}) td:nth-child(${removeSquare2[1]})`).classList.remove('active2');
+  console.log(targets)
+  }
+  else if ( JSON.stringify(secondSquare) === JSON.stringify(firstDot)) {
+  let newSquare2 = [];
+  secondSquare.concat(newSquare2);
+  newSquare2[1] += 1;
+  targets2.push(newSquare2);
+  let removeSquare = targets.pop();
+  document.querySelector(`tr:nth-child(${removeSquare[0]}) td:nth-child(${removeSquare[1]})`).classList.remove('active');
+  console.log(targets2);
+
+  };
+};
+
 });
+
+
+
+

@@ -17,15 +17,17 @@ td {
 	background: linear-gradient(45deg, grey, white);
 }
 td.active{
-	background: linear-gradient(45deg, red, black);
+	background: linear-gradient(45deg, darkred, black);
 }
 td.active2{
 	background: linear-gradient(45deg, green, black);
 }
-
+td.dot{
+	background: linear-gradient(45deg, blue, blue);
+}
 h1 {
 	width: 400px;
 	text-align: center;
 	color: white;
-	margin: 20px auto;
+	margin: 20px auto 0 auto;
 }
