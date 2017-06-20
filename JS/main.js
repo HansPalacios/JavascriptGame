@@ -116,6 +116,7 @@ addDot('dot2');
   byeface();
   plus();
   plus2();
+  gameOver();
 },200);
 
 // second snake**********************************************************************
@@ -178,6 +179,7 @@ targets2.forEach(function(target2){
   byeface2();
   plus();
   plus2();
+  gameOver();
 },200);
 
 
@@ -225,6 +227,13 @@ function plus2(){
   };
 };
 
+function gameOver() {
+  if (targets.length === 0){
+    alert("dead");
+  } else if (targets2.length === 0){
+    alert("dead");
+  };
+};
 });
 
 
