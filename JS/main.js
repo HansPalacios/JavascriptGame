@@ -1,17 +1,24 @@
-const gridSize = 18;
-let targets = [[2,6],[2,5],[2,4],[2,3],[2,2]];
-let targets2 = [[16,6],[16,5],[16,4],[16,3],[16,2]];
-let dots = [[7,6]];
+let targets = [[3,6],[3,5],[3,4],[3,3],[3,2]];
+let targets2 = [[22,6],[22,5],[22,4],[22,3],[22,2]];
 let lastPress;
 let lastPress2;
+let dot;
+let dot2;
 
+
+
+function addDot(type){
+  document.querySelector('.'+type) && document.querySelector('.'+type).classList.remove(type);
+  let coords = [Math.floor((Math.random() * 25) + 1),Math.floor((Math.random() * 25) + 1)];
+  window[type] = coords;
+  console.log(type,coords)
+  document.querySelector(`tr:nth-child(${coords[0]}) td:nth-child(${coords[1]})`).classList.add(type);
+}
 
 document.addEventListener("DOMContentLoaded",function(){
 
-// food**********************************
-dots.forEach(function(dot){
-document.querySelector(`tr:nth-child(${dot[0]}) td:nth-child(${dot[1]})`).classList.add('dot');
-});
+addDot('dot');
+addDot('dot2');
 
 // first snake**********************************************************************
   targets.forEach(function(target){
@@ -35,7 +42,7 @@ document.querySelector(`tr:nth-child(${dot[0]}) td:nth-child(${dot[1]})`).classL
   if (lastPress.keyCode == '38') {
     newSquare[0] -= 1;
     if( newSquare[0] <= 0) {
-        newSquare[0] = 18;
+        newSquare[0] = 25;
       }
     targets.unshift(newSquare);
     let removeSquare = targets.pop();
@@ -46,11 +53,12 @@ document.querySelector(`tr:nth-child(${dot[0]}) td:nth-child(${dot[1]})`).classL
   // down
     else if (lastPress.keyCode == '40') {
     newSquare[0] += 1;
-     if( newSquare[0] > gridSize ) {
+     if( newSquare[0] > 25 ) {
           newSquare[0] = 1;
         }
     targets.unshift(newSquare);
     let removeSquare = targets.pop();
+    console.log( removeSquare, `tr:nth-child(${removeSquare[0]}) td:nth-child(${removeSquare[1]})`)
     document.querySelector(`tr:nth-child(${removeSquare[0]}) td:nth-child(${removeSquare[1]})`).classList.remove('active');
     document.querySelector(`tr:nth-child(${newSquare[0]}) td:nth-child(${newSquare[1]})`).classList.add('active');
     console.log(targets);
@@ -59,7 +67,7 @@ document.querySelector(`tr:nth-child(${dot[0]}) td:nth-child(${dot[1]})`).classL
     else if (lastPress.keyCode == '37') {
     newSquare[1] -= 1;
      if( newSquare[1] <= 0 ) {
-          newSquare[1] = 18;
+          newSquare[1] = 25;
         }
     targets.unshift(newSquare);
     let removeSquare = targets.pop();
@@ -70,7 +78,7 @@ document.querySelector(`tr:nth-child(${dot[0]}) td:nth-child(${dot[1]})`).classL
     // right
     else  if (lastPress.keyCode == '39') {
     newSquare[1] += 1;
-     if( newSquare[1] > gridSize ) {
+     if( newSquare[1] > 25 ) {
           newSquare[1] = 1;
         }
     targets.unshift(newSquare);
@@ -78,12 +86,10 @@ document.querySelector(`tr:nth-child(${dot[0]}) td:nth-child(${dot[1]})`).classL
     document.querySelector(`tr:nth-child(${removeSquare[0]}) td:nth-child(${removeSquare[1]})`).classList.remove('active');
     document.querySelector(`tr:nth-child(${newSquare[0]}) td:nth-child(${newSquare[1]})`).classList.add('active');
     console.log(targets);
-  }
-  // else if( targets = dots ) {
-  //  newSquare[1] += 1;
-  //  targets.push(newSquare);
-  // }
+  };
+
   plus();
+  plus2();
 },200);
 
 // second snake**********************************************************************
@@ -98,7 +104,7 @@ targets2.forEach(function(target2){
   if (lastPress2.keyCode == '87') {
     newSquare2[0] -= 1;
     if( newSquare2[0] <= 0) {
-        newSquare2[0] = 18;
+        newSquare2[0] = 25;
       }
     targets2.unshift(newSquare2);
     let removeSquare2 = targets2.pop();
@@ -109,7 +115,7 @@ targets2.forEach(function(target2){
   // down
     else if (lastPress2.keyCode == '83') {
     newSquare2[0] += 1;
-     if( newSquare2[0] > gridSize ) {
+     if( newSquare2[0] > 25 ) {
           newSquare2[0] = 1;
         }
     targets2.unshift(newSquare2);
@@ -122,7 +128,7 @@ targets2.forEach(function(target2){
     else if (lastPress2.keyCode == '65') {
     newSquare2[1] -= 1;
      if( newSquare2[1] <= 0 ) {
-          newSquare2[1] = 18;
+          newSquare2[1] = 25;
         }
     targets2.unshift(newSquare2);
     let removeSquare2 = targets2.pop();
@@ -133,7 +139,7 @@ targets2.forEach(function(target2){
     // right
     else  if (lastPress2.keyCode == '68') {
     newSquare2[1] += 1;
-     if( newSquare2[1] > gridSize ) {
+     if( newSquare2[1] > 25) {
           newSquare2[1] = 1;
         }
     targets2.unshift(newSquare2);
@@ -142,7 +148,9 @@ targets2.forEach(function(target2){
     document.querySelector(`tr:nth-child(${newSquare2[0]}) td:nth-child(${newSquare2[1]})`).classList.add('active2');
     console.log(targets2);
   };
+
   plus();
+  plus2();
 },200);
 
 
@@ -150,25 +158,41 @@ targets2.forEach(function(target2){
 function plus(){
   let firstSquare = targets[0];
   let secondSquare = targets2[0];
-  let firstDot = dots[0];
 
-  if ( JSON.stringify(firstSquare) === JSON.stringify(firstDot)) {
-  let newSquare = [];
-  firstSquare.concat(newSquare);
-  newSquare[1] += 1;
+  if ( JSON.stringify(firstSquare) === JSON.stringify(window.dot)) {
+  let newSquare = targets.slice(-1)[0];
   targets.push(newSquare);
+
   let removeSquare2 = targets2.pop();
   document.querySelector(`tr:nth-child(${removeSquare2[0]}) td:nth-child(${removeSquare2[1]})`).classList.remove('active2');
-  console.log(targets)
+  addDot('dot');
   }
-  else if ( JSON.stringify(secondSquare) === JSON.stringify(firstDot)) {
-  let newSquare2 = [];
-  secondSquare.concat(newSquare2);
-  newSquare2[1] += 1;
+  else if ( JSON.stringify(secondSquare) === JSON.stringify(window.dot)) {
+  let newSquare2 = targets2.slice(-1)[0];
+
   targets2.push(newSquare2);
   let removeSquare = targets.pop();
   document.querySelector(`tr:nth-child(${removeSquare[0]}) td:nth-child(${removeSquare[1]})`).classList.remove('active');
-  console.log(targets2);
+    addDot('dot');
+  };
+};
+
+function plus2(){
+  let firstSquare = targets[0];
+  let secondSquare = targets2[0];
+  if ( JSON.stringify(firstSquare) === JSON.stringify(window.dot2)) {
+  let newSquare = targets2.slice(-1)[0];
+  targets.push(newSquare);
+  let removeSquare2 = targets2.pop();
+  document.querySelector(`tr:nth-child(${removeSquare2[0]}) td:nth-child(${removeSquare2[1]})`).classList.remove('active2');
+  addDot('dot2');
+  }
+  else if ( JSON.stringify(secondSquare) === JSON.stringify(window.dot2)) {
+  let newSquare2 = targets.slice(-1)[0];
+  targets2.push(newSquare2);
+  let removeSquare = targets.pop();
+  document.querySelector(`tr:nth-child(${removeSquare[0]}) td:nth-child(${removeSquare[1]})`).classList.remove('active');
+  addDot('dot2');
 
   };
 };
