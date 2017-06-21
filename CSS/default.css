@@ -8,8 +8,14 @@ body {
 	background-repeat: no-repeat;
 	overflow: hidden;
 }
+h1 {
+	width: 400px;
+	text-align: center;
+	color: white;
+	margin: 40px auto 0 auto;
+}
 table {
-	margin: 50px auto;
+	margin: 20px auto;
 }
 td {
 	height: 22px;
@@ -64,9 +70,21 @@ td.face2{
 	margin-left: -25px;
 	margin-top: -20px;
 }
-h1 {
-	width: 400px;
-	text-align: center;
+
+#restart {
 	color: white;
-	margin: 20px auto 0 auto;
+	background: linear-gradient(blue, black);
+	text-align: center;
+	position: relative;
+	width: 150px;
+	left: 43%;
+	margin-top: 20px;
+	padding: 5px;
+}
+#father {
+	position: fixed;
+	z-index: 1;
+	width: 0;
+	top: 150px;
+	right: 200px;
 }

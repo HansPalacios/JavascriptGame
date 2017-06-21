@@ -8,26 +8,22 @@ let dot2;
 // face for snake 1
 function face(){
   let coords = targets[0];
-  console.log(face,coords)
   document.querySelector(`tr:nth-child(${coords[0]}) td:nth-child(${coords[1]})`).classList.add('face');
 };
 face();
 function byeface(){
   let coords = targets[1];
-  console.log(face,coords)
   document.querySelector(`tr:nth-child(${coords[0]}) td:nth-child(${coords[1]})`).classList.remove('face');
 };
 
 // face for snake 2
 function face2(){
   let coords = targets2[0];
-  console.log(face,coords)
   document.querySelector(`tr:nth-child(${coords[0]}) td:nth-child(${coords[1]})`).classList.add('face2');
 };
 face2();
 function byeface2(){
   let coords = targets2[1];
-  console.log(face,coords)
   document.querySelector(`tr:nth-child(${coords[0]}) td:nth-child(${coords[1]})`).classList.remove('face2');
 };
 
@@ -36,11 +32,24 @@ function addDot(type){
   document.querySelector('.'+type) && document.querySelector('.'+type).classList.remove(type);
   let coords = [Math.floor((Math.random() * 25) + 1),Math.floor((Math.random() * 25) + 1)];
   window[type] = coords;
-  console.log(type,coords)
   document.querySelector(`tr:nth-child(${coords[0]}) td:nth-child(${coords[1]})`).classList.add(type);
 };
 
+
+// restart game
+document.getElementById("restart").addEventListener("click", function(){
+location.reload();
+  });
+
+
+
+
 document.addEventListener("DOMContentLoaded",function(){
+
+// music
+var aud = new Audio();
+aud.src = 'media/whosyourdaddy.mp3';
+aud.play();
 
 addDot('dot');
 addDot('dot2');
@@ -73,7 +82,6 @@ addDot('dot2');
     let removeSquare = targets.pop();
     document.querySelector(`tr:nth-child(${removeSquare[0]}) td:nth-child(${removeSquare[1]})`).classList.remove('active');
     document.querySelector(`tr:nth-child(${newSquare[0]}) td:nth-child(${newSquare[1]})`).classList.add('active');
-    console.log(targets);
   }
   // down
     else if (lastPress.keyCode == '40') {
@@ -86,7 +94,6 @@ addDot('dot2');
     console.log( removeSquare, `tr:nth-child(${removeSquare[0]}) td:nth-child(${removeSquare[1]})`)
     document.querySelector(`tr:nth-child(${removeSquare[0]}) td:nth-child(${removeSquare[1]})`).classList.remove('active');
     document.querySelector(`tr:nth-child(${newSquare[0]}) td:nth-child(${newSquare[1]})`).classList.add('active');
-    console.log(targets);
     }
     // left
     else if (lastPress.keyCode == '37') {
@@ -98,7 +105,6 @@ addDot('dot2');
     let removeSquare = targets.pop();
     document.querySelector(`tr:nth-child(${removeSquare[0]}) td:nth-child(${removeSquare[1]})`).classList.remove('active');
     document.querySelector(`tr:nth-child(${newSquare[0]}) td:nth-child(${newSquare[1]})`).classList.add('active');
-    console.log(targets);
   }
     // right
     else  if (lastPress.keyCode == '39') {
@@ -110,14 +116,13 @@ addDot('dot2');
     let removeSquare = targets.pop();
     document.querySelector(`tr:nth-child(${removeSquare[0]}) td:nth-child(${removeSquare[1]})`).classList.remove('active');
     document.querySelector(`tr:nth-child(${newSquare[0]}) td:nth-child(${newSquare[1]})`).classList.add('active');
-    console.log(targets);
   };
   face();
   byeface();
   plus();
   plus2();
   gameOver();
-},200);
+},100);
 
 // second snake**********************************************************************
 targets2.forEach(function(target2){
@@ -137,7 +142,6 @@ targets2.forEach(function(target2){
     let removeSquare2 = targets2.pop();
     document.querySelector(`tr:nth-child(${removeSquare2[0]}) td:nth-child(${removeSquare2[1]})`).classList.remove('active2');
     document.querySelector(`tr:nth-child(${newSquare2[0]}) td:nth-child(${newSquare2[1]})`).classList.add('active2');
-    console.log(targets2);
   }
   // down
     else if (lastPress2.keyCode == '83') {
@@ -149,7 +153,6 @@ targets2.forEach(function(target2){
     let removeSquare2 = targets2.pop();
     document.querySelector(`tr:nth-child(${removeSquare2[0]}) td:nth-child(${removeSquare2[1]})`).classList.remove('active2');
     document.querySelector(`tr:nth-child(${newSquare2[0]}) td:nth-child(${newSquare2[1]})`).classList.add('active2');
-    console.log(targets2);
     }
     // left>
     else if (lastPress2.keyCode == '65') {
@@ -180,7 +183,7 @@ targets2.forEach(function(target2){
   plus();
   plus2();
   gameOver();
-},200);
+},100);
 
 
 
@@ -228,14 +231,15 @@ function plus2(){
 };
 
 function gameOver() {
-  if (targets.length === 0){
-    alert("dead");
-  } else if (targets2.length === 0){
-    alert("dead");
+  if (targets.length === 0 || targets2.length === 0){
+     $("#father").animate({"width": "500px"}, 1000);
+     // aud.pause();
+     // var aud2 = new Audio();
+     // aud2.src = 'media/californialove.mp3';
+     // aud2.play();
   };
 };
 });
-
 
 
 
