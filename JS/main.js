@@ -232,7 +232,7 @@ function plus2(){
 
 function gameOver() {
   if (targets.length === 0 || targets2.length === 0){
-     $("#father").animate({"width": "550px"}, 1000);
+     $("#father").animate({"width": "550px"}, 10);
      // aud.pause();
      // var aud2 = new Audio();
      // aud2.src = 'media/californialove.mp3';
